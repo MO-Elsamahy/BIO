@@ -8,12 +8,24 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        display: ["var(--font-display)", "Georgia", "serif"],
+        body: ["var(--font-body)", "system-ui", "sans-serif"],
+        mono: ["var(--font-mono)", "monospace"],
+      },
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        bg: "var(--color-bg)",
+        surface: "var(--color-surface)",
+        border: "var(--color-border)",
+        primary: "var(--color-primary)",
+        accent: "var(--color-accent)",
+        text: "var(--color-text)",
+        muted: "var(--color-muted)",
+        highlight: "var(--color-highlight)",
       },
     },
   },
   plugins: [],
 };
+
 export default config;

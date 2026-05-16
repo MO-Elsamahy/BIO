@@ -2,26 +2,68 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ─── UCL Theme (Light Academic) ─────────────────────────────────── */
+:root,
+[data-theme="ucl"] {
+  --color-bg:        #fcfcfd;
+  --color-surface:   #f8fafc;
+  --color-border:    #e2e8f0;
+  --color-primary:   #003399;
+  --color-accent:    #c8a951;
+  --color-text:      #0f172a;
+  --color-muted:     #64748b;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─── Barcelona Theme ────────────────────────────────────────────── */
+[data-theme="barca"] {
+  --color-bg:        #a50044;
+  --color-surface:   #004d98;
+  --color-border:    #edbb00;
+  --color-primary:   #004d98;
+  --color-accent:    #edbb00;
+  --color-text:      #ffffff;
+  --color-muted:     #ffd7e1;
+}
+
+/* ─── Global — Hide Scrollbar, Enable Smooth Transition ──────────── */
+html {
+  scroll-behavior: smooth;
+  /* Smooth theme transition across ALL CSS variables */
+  transition:
+    background-color 1.8s cubic-bezier(0.4, 0, 0.2, 1),
+    color 1.2s ease;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  transition:
+    background-color 1.8s cubic-bezier(0.4, 0, 0.2, 1),
+    color 1.2s ease;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* ─── Sections inherit smooth transitions ─────────────────────────── */
+section,
+div,
+h1, h2, h3, h4,
+p, span, td, th {
+  transition:
+    background-color 1.8s cubic-bezier(0.4, 0, 0.2, 1),
+    color 1.2s ease,
+    border-color 1.2s ease;
+}
+
+/* ─── Typography ─────────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display), Georgia, serif;
+  color: var(--color-primary);
 }
