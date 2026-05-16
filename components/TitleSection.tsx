@@ -33,15 +33,24 @@ export default function TitleSection() {
       <div style={{ position: "absolute", top: "10%", left: "6%", right: "6%", height: "1px", background: "var(--color-border)" }} />
       <div style={{ position: "absolute", bottom: "10%", left: "6%", right: "6%", height: "1px", background: "var(--color-border)" }} />
 
-      {/* Corner markers */}
-      <div style={{ position: "absolute", top: "10%", left: "6%", width: "12px", height: "12px", borderTop: "2px solid var(--color-primary)", borderLeft: "2px solid var(--color-primary)" }} />
-      <div style={{ position: "absolute", top: "10%", right: "6%", width: "12px", height: "12px", borderTop: "2px solid var(--color-primary)", borderRight: "2px solid var(--color-primary)" }} />
-      <div style={{ position: "absolute", bottom: "10%", left: "6%", width: "12px", height: "12px", borderBottom: "2px solid var(--color-primary)", borderLeft: "2px solid var(--color-primary)" }} />
-      <div style={{ position: "absolute", bottom: "10%", right: "6%", width: "12px", height: "12px", borderBottom: "2px solid var(--color-primary)", borderRight: "2px solid var(--color-primary)" }} />
+      {/* Corner markers with subtle floating animation */}
+      <motion.div animate={{ y: [0, -5, 0] }} transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }} style={{ position: "absolute", top: "10%", left: "6%", width: "12px", height: "12px", borderTop: "2px solid var(--color-primary)", borderLeft: "2px solid var(--color-primary)" }} />
+      <motion.div animate={{ y: [0, 5, 0] }} transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }} style={{ position: "absolute", top: "10%", right: "6%", width: "12px", height: "12px", borderTop: "2px solid var(--color-primary)", borderRight: "2px solid var(--color-primary)" }} />
+      <motion.div animate={{ y: [0, 5, 0] }} transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }} style={{ position: "absolute", bottom: "10%", left: "6%", width: "12px", height: "12px", borderBottom: "2px solid var(--color-primary)", borderLeft: "2px solid var(--color-primary)" }} />
+      <motion.div animate={{ y: [0, -5, 0] }} transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut" }} style={{ position: "absolute", bottom: "10%", right: "6%", width: "12px", height: "12px", borderBottom: "2px solid var(--color-primary)", borderRight: "2px solid var(--color-primary)" }} />
 
       <motion.div style={{ y, opacity, textAlign: "center", zIndex: 10, padding: "0 2rem" }}>
-        <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
-          <div
+        <motion.div 
+          initial="hidden" 
+          animate="visible" 
+          variants={{
+            visible: { transition: { staggerChildren: 0.2 } },
+            hidden: {}
+          }}
+          style={{ display: "flex", flexDirection: "column", gap: "2rem" }}
+        >
+          <motion.div
+            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 1 } } }}
             style={{
               fontFamily: "var(--font-mono)",
               fontSize: "0.8rem",
@@ -52,9 +61,10 @@ export default function TitleSection() {
             }}
           >
             Survival Analysis &middot; 1992&ndash;2025
-          </div>
+          </motion.div>
 
-          <h1
+          <motion.h1
+            variants={{ hidden: { opacity: 0, scale: 0.95 }, visible: { opacity: 1, scale: 1, transition: { duration: 1.2, ease: "easeOut" } } }}
             style={{
               fontFamily: "var(--font-display)",
               fontSize: "clamp(3.8rem, 11vw, 9rem)",
@@ -68,9 +78,10 @@ export default function TitleSection() {
             Trophy
             <br />
             <span style={{ color: "var(--color-accent)", fontStyle: "italic" }}>Drought</span>
-          </h1>
+          </motion.h1>
 
-          <p
+          <motion.p
+            variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 1.5 } } }}
             style={{
               fontFamily: "var(--font-body)",
               fontSize: "1.05rem",
@@ -81,29 +92,34 @@ export default function TitleSection() {
             }}
           >
             UEFA Champions League &middot; 23 Clubs &middot; 56 Spells
-          </p>
+          </motion.p>
 
-          <motion.button
-            onClick={() => document.getElementById("barcelona")?.scrollIntoView({ behavior: "smooth" })}
-            style={{
-              marginTop: "4rem",
-              background: "var(--color-primary)",
-              border: "none",
-              padding: "1.2rem 3.5rem",
-              fontFamily: "var(--font-mono)",
-              fontSize: "0.75rem",
-              letterSpacing: "0.4em",
-              color: "#ffffff",
-              textTransform: "uppercase",
-              cursor: "pointer",
-            }}
-            whileHover={{ background: "#c8a951" }}
-            transition={{ duration: 0.25 }}
-          >
-            Begin Exploration
-          </motion.button>
-        </div>
+          <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8 } } }}>
+            <motion.button
+              onClick={() => document.getElementById("barcelona")?.scrollIntoView({ behavior: "smooth" })}
+              style={{
+                marginTop: "4rem",
+                background: "var(--color-primary)",
+                border: "none",
+                padding: "1.2rem 3.5rem",
+                fontFamily: "var(--font-mono)",
+                fontSize: "0.75rem",
+                letterSpacing: "0.4em",
+                color: "#ffffff",
+                textTransform: "uppercase",
+                cursor: "pointer",
+                boxShadow: "0 15px 35px rgba(0,51,153,0.2)",
+              }}
+              whileHover={{ background: "#c8a951", scale: 1.05, boxShadow: "0 20px 40px rgba(200,169,81,0.4)" }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.25 }}
+            >
+              Begin Exploration
+            </motion.button>
+          </motion.div>
+        </motion.div>
       </motion.div>
+
     </section>
   );
 }

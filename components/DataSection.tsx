@@ -46,16 +46,25 @@ export default function DataSection() {
                 ))}
               </tr>
             </thead>
-            <tbody>
+            <motion.tbody 
+              initial="hidden"
+              animate={inView ? "visible" : "hidden"}
+              variants={{ visible: { transition: { staggerChildren: 0.05 } }, hidden: {} }}
+            >
               {tableData.map((row, i) => (
-                <tr key={i} style={{ borderBottom: "1px solid #f1f5f9", background: i % 2 === 0 ? "transparent" : "#fcfcfd" }}>
+                <motion.tr 
+                  key={i} 
+                  variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } }}
+                  whileHover={{ scale: 1.01, backgroundColor: "#f1f5f9", transition: { duration: 0.2 } }}
+                  style={{ borderBottom: "1px solid #f1f5f9", background: i % 2 === 0 ? "transparent" : "#fcfcfd" }}
+                >
                   <td style={{ fontFamily: "var(--font-mono)", fontSize: "0.95rem", fontWeight: 700, color: "var(--color-primary)", padding: "1.5rem 2rem" }}>{row.variable}</td>
                   <td style={{ fontFamily: "var(--font-mono)", fontSize: "0.8rem", color: "#64748b", padding: "1.5rem 2rem" }}>{row.type}</td>
                   <td style={{ fontFamily: "var(--font-body)", fontSize: "0.95rem", color: "#475569", padding: "1.5rem 2rem" }}>{row.role}</td>
                   <td style={{ fontFamily: "var(--font-body)", fontSize: "0.95rem", color: "#64748b", padding: "1.5rem 2rem", opacity: 0.8 }}>{row.desc}</td>
-                </tr>
+                </motion.tr>
               ))}
-            </tbody>
+            </motion.tbody>
           </table>
         </motion.div>
       </div>

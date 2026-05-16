@@ -76,14 +76,30 @@ export default function BarcelonaSection() {
     <section id="barcelona" ref={ref} style={{ background: "var(--color-bg)", paddingBottom: "15rem", transition: "all 1s ease" }}>
       {/* Cinematic Blaugrana Header */}
       <div style={{ height: "60vh", background: "#004d98", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden" }}>
-        <div style={{ position: "absolute", inset: 0, display: "flex" }}>
+        <div style={{ position: "absolute", inset: "-20%", display: "flex", width: "140%" }}>
            {[...Array(12)].map((_, i) => (
-             <div key={i} style={{ flex: 1, background: i % 2 === 0 ? "#a50044" : "#004d98" }} />
+             <motion.div 
+               key={i} 
+               animate={{ x: [0, -100, 0] }} 
+               transition={{ repeat: Infinity, duration: 20 + i * 2, ease: "linear" }}
+               style={{ flex: 1, background: i % 2 === 0 ? "#a50044" : "#004d98", opacity: 0.8 }} 
+             />
            ))}
         </div>
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent, #a50044)" }} />
-        <motion.div initial={{ opacity: 0, scale: 0.5 }} animate={inView ? { opacity: 1, scale: 1 } : {}} transition={{ duration: 1.5 }} style={{ position: "relative", width: "350px", height: "350px", zIndex: 10 }}>
-          <Image src="/barca-crest.png" alt="FCB" fill style={{ objectFit: "contain" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 30%, #a50044)" }} />
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.5 }} 
+          animate={inView ? { opacity: 1, scale: 1 } : {}} 
+          transition={{ duration: 1.5, ease: "easeOut" }} 
+          style={{ position: "relative", width: "350px", height: "350px", zIndex: 10 }}
+        >
+          <motion.div
+            animate={{ y: [0, -15, 0], rotate: [0, 2, -2, 0] }}
+            transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
+            style={{ width: "100%", height: "100%", position: "relative" }}
+          >
+            <Image src="/barca-crest.png" alt="FCB" fill style={{ objectFit: "contain", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.5))" }} />
+          </motion.div>
         </motion.div>
       </div>
 

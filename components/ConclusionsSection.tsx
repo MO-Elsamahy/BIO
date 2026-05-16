@@ -21,26 +21,47 @@ export default function ConclusionsSection() {
     <section id="conclusions" ref={ref} style={{ background: "#ffffff", padding: "15rem 2rem 10rem", borderTop: "1px solid var(--color-border)" }}>
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} style={{ marginBottom: "10rem", textAlign: "center" }}>
-          <div style={{ position: "relative", width: "80px", height: "80px", margin: "0 auto 3rem" }}>
+          <motion.div 
+            animate={{ rotate: [0, 5, -5, 0], y: [0, -10, 0] }} 
+            transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }} 
+            style={{ position: "relative", width: "80px", height: "80px", margin: "0 auto 3rem" }}
+          >
              <Image src="/ucl-logo.png" alt="UCL" fill style={{ objectFit: "contain" }} />
-          </div>
+          </motion.div>
           <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(3.5rem, 8vw, 5.5rem)", fontWeight: 300, color: "var(--color-primary)", lineHeight: 0.9, letterSpacing: "-0.04em", marginBottom: "3rem" }}>Synthesized Findings.</h2>
           <p style={{ fontFamily: "var(--font-body)", fontSize: "1.2rem", color: "var(--color-muted)", maxWidth: "800px", margin: "0 auto" }}>
             This investigation demonstrates that UCL trophy droughts are not merely products of chance, but are systematically predictable from institutional and sporting covariates.
           </p>
         </motion.div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "6rem", marginBottom: "12rem" }} className="grid-cols-1 lg:grid-cols-2">
+        <motion.div 
+          initial="hidden" 
+          animate={inView ? "visible" : "hidden"} 
+          variants={{ visible: { transition: { staggerChildren: 0.15 } }, hidden: {} }} 
+          style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "6rem", marginBottom: "12rem" }} 
+          className="grid-cols-1 lg:grid-cols-2"
+        >
           {findings.map((f, i) => (
-            <motion.div key={i} initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: i * 0.1 }} style={{ borderBottom: "1px solid var(--color-border)", paddingBottom: "4rem" }}>
+            <motion.div 
+              key={i} 
+              variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }} 
+              whileHover={{ scale: 1.02, x: 5, transition: { duration: 0.2 } }}
+              style={{ borderBottom: "1px solid var(--color-border)", paddingBottom: "4rem", cursor: "default" }}
+            >
               <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.75rem", color: "var(--color-primary)", letterSpacing: "0.4em", marginBottom: "2rem", fontWeight: 800 }}>FINDING &mdash; {f.index}</div>
               <h3 style={{ fontFamily: "var(--font-display)", fontSize: "2rem", lineHeight: 1.2, color: "var(--color-primary)", marginBottom: "1.5rem" }}>{f.title}</h3>
               <p style={{ fontFamily: "var(--font-body)", fontSize: "1.05rem", color: "var(--color-text)", lineHeight: 1.6, opacity: 0.8 }}>{f.text}</p>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={inView ? { opacity: 1, scale: 1 } : {}} transition={{ duration: 1.2, delay: 0.8 }} style={{ background: "#f8fafc", border: "1px solid var(--color-border)", padding: "8rem 5rem", textAlign: "center", boxShadow: "0 40px 80px rgba(0,0,0,0.02)" }}>
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }} 
+          animate={inView ? { opacity: 1, scale: 1 } : {}} 
+          transition={{ duration: 1.2, delay: 0.8 }} 
+          whileHover={{ boxShadow: "0 60px 120px rgba(0,51,153,0.08)", y: -5 }}
+          style={{ background: "#f8fafc", border: "1px solid var(--color-border)", padding: "8rem 5rem", textAlign: "center", boxShadow: "0 40px 80px rgba(0,0,0,0.02)", transition: "all 0.4s ease" }}
+        >
           <p style={{ fontFamily: "var(--font-display)", fontStyle: "italic", fontSize: "2.4rem", lineHeight: 1.3, color: "var(--color-primary)", maxWidth: "900px", margin: "0 auto" }}>
             &ldquo;In the ecosystem of elite competition, structural continuity remains the single most consequential variable for institutional longevity.&rdquo;
           </p>
