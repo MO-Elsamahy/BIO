@@ -63,36 +63,39 @@ export default function TitleSection() {
             Survival Analysis &middot; 1992&ndash;2025
           </motion.div>
 
-          <motion.h1
-            variants={{ hidden: { opacity: 0, scale: 0.95 }, visible: { opacity: 1, scale: 1, transition: { duration: 1.2, ease: "easeOut" } } }}
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(3.8rem, 11vw, 9rem)",
-              fontWeight: 300,
-              lineHeight: 0.88,
-              color: "var(--color-primary)",
-              textTransform: "uppercase",
-              letterSpacing: "-0.04em",
-            }}
-          >
-            Trophy
-            <br />
-            <span style={{ color: "var(--color-accent)", fontStyle: "italic" }}>Drought</span>
-          </motion.h1>
+          <div style={{ overflow: "hidden" }}>
+            <motion.h1
+              variants={{ hidden: { y: "100%", opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(3.8rem, 11vw, 9rem)",
+                fontWeight: 300,
+                lineHeight: 0.88,
+                color: "var(--color-primary)",
+                textTransform: "uppercase",
+                letterSpacing: "-0.04em",
+              }}
+            >
+              Trophy
+              <br />
+              <span style={{ color: "var(--color-accent)", fontStyle: "italic" }}>Drought</span>
+            </motion.h1>
+          </div>
 
-          <motion.p
-            variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 1.5 } } }}
-            style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "1.05rem",
-              letterSpacing: "0.35em",
-              color: "var(--color-muted)",
-              textTransform: "uppercase",
-              marginTop: "1rem",
-            }}
-          >
-            UEFA Champions League &middot; 23 Clubs &middot; 56 Spells
-          </motion.p>
+          <div style={{ overflow: "hidden", marginTop: "1rem" }}>
+            <motion.p
+              variants={{ hidden: { y: "100%", opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "1.05rem",
+                letterSpacing: "0.35em",
+                color: "var(--color-muted)",
+                textTransform: "uppercase",
+              }}
+            >
+              UEFA Champions League &middot; 23 Clubs &middot; 56 Spells
+            </motion.p>
+          </div>
 
           <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8 } } }}>
             <motion.button

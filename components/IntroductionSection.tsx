@@ -43,14 +43,16 @@ export default function IntroductionSection() {
             <motion.div initial={{ width: 0 }} animate={inView ? { width: "120px" } : {}} transition={{ duration: 1.8 }} style={{ height: "2px", background: "var(--color-primary)" }} />
           </div>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 50 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 1, ease: [0.4, 0, 0.2, 1] }}
-            style={{ fontFamily: "var(--font-display)", fontSize: "clamp(3rem, 6vw, 5rem)", fontWeight: 400, color: "var(--color-primary)", lineHeight: 0.92, letterSpacing: "-0.04em", marginBottom: "4rem" }}
-          >
-            Framing the<br /><span style={{ color: "var(--color-accent)", fontStyle: "italic" }}>Survival Problem.</span>
-          </motion.h2>
+          <div style={{ overflow: "hidden", marginBottom: "4rem" }}>
+            <motion.h2
+              initial={{ y: "100%" }}
+              animate={inView ? { y: 0 } : {}}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              style={{ fontFamily: "var(--font-display)", fontSize: "clamp(3rem, 6vw, 5rem)", fontWeight: 400, color: "var(--color-primary)", lineHeight: 0.92, letterSpacing: "-0.04em" }}
+            >
+              Framing the<br /><span style={{ color: "var(--color-accent)", fontStyle: "italic" }}>Survival Problem.</span>
+            </motion.h2>
+          </div>
 
           <div style={{ display: "flex", flexDirection: "column", gap: "3rem" }}>
             <motion.p

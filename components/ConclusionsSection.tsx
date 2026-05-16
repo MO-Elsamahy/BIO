@@ -28,7 +28,16 @@ export default function ConclusionsSection() {
           >
              <Image src="/ucl-logo.png" alt="UCL" fill style={{ objectFit: "contain" }} />
           </motion.div>
-          <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(3.5rem, 8vw, 5.5rem)", fontWeight: 300, color: "var(--color-primary)", lineHeight: 0.9, letterSpacing: "-0.04em", marginBottom: "3rem" }}>Synthesized Findings.</h2>
+          <div style={{ overflow: "hidden", marginBottom: "3rem" }}>
+            <motion.h2 
+              initial={{ y: "100%" }} 
+              animate={inView ? { y: 0 } : {}} 
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+              style={{ fontFamily: "var(--font-display)", fontSize: "clamp(3.5rem, 8vw, 5.5rem)", fontWeight: 300, color: "var(--color-primary)", lineHeight: 0.9, letterSpacing: "-0.04em" }}
+            >
+              Synthesized Findings.
+            </motion.h2>
+          </div>
           <p style={{ fontFamily: "var(--font-body)", fontSize: "1.2rem", color: "var(--color-muted)", maxWidth: "800px", margin: "0 auto" }}>
             This investigation demonstrates that UCL trophy droughts are not merely products of chance, but are systematically predictable from institutional and sporting covariates.
           </p>

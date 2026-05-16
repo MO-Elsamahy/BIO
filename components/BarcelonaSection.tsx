@@ -107,7 +107,16 @@ export default function BarcelonaSection() {
         <motion.div initial={{ opacity: 0, y: 100 }} animate={inView ? { opacity: 1, y: 0 } : {}} style={{ background: "#ffffff", border: "4px solid #edbb00", padding: "6rem", boxShadow: "0 50px 100px rgba(0,0,0,0.3)" }}>
           <div style={{ textAlign: "center", marginBottom: "8rem" }}>
             <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.9rem", color: "#a50044", letterSpacing: "0.5em", textTransform: "uppercase", fontWeight: 900, display: "block", marginBottom: "2rem" }}>Case Study &mdash; FC Barcelona</span>
-            <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(3rem, 8vw, 6rem)", color: "#004d98", lineHeight: 0.9, letterSpacing: "-0.04em", marginBottom: "3rem" }}>Més Que <br /> Un Club.</h2>
+            <div style={{ overflow: "hidden" }}>
+              <motion.h2 
+                initial={{ y: "100%" }} 
+                animate={inView ? { y: 0 } : {}} 
+                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+                style={{ fontFamily: "var(--font-display)", fontSize: "clamp(3rem, 8vw, 6rem)", color: "#004d98", lineHeight: 0.9, letterSpacing: "-0.04em", marginBottom: "3rem" }}
+              >
+                Més Que <br /> Un Club.
+              </motion.h2>
+            </div>
             <p style={{ color: "#666", fontSize: "1.1rem", maxWidth: "600px", margin: "0 auto" }}>A Log-Normal AFT application to the post-2015 institutional drought.</p>
           </div>
 
