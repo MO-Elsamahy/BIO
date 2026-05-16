@@ -76,14 +76,32 @@ export default function ConclusionsSection() {
           </p>
         </motion.div>
 
-        <footer style={{ marginTop: "15rem", paddingTop: "6rem", borderTop: "1px solid var(--color-border)", display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "4rem" }}>
+        <div style={{ marginTop: "10rem", paddingTop: "6rem", borderTop: "1px solid var(--color-border)" }}>
+          <h3 style={{ fontFamily: "var(--font-display)", fontSize: "2rem", color: "var(--color-primary)", marginBottom: "3rem" }}>References & Data Sources.</h3>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "2rem" }}>
+            {[
+              "Cox, D.R. (1972). Regression models and life-tables. Journal of the Royal Statistical Society.",
+              "Kaplan, E.L. & Meier, P. (1958). Nonparametric estimation from incomplete observations. JASA.",
+              "Therneau, T.M. & Grambsch, P.M. (2000). Modeling survival data: Extending the Cox model.",
+              "R Core Team (2024). R: A language and environment for statistical computing.",
+              "Union of European Football Associations (2025). UEFA Champions League historical records.",
+              "Transfermarkt GmbH (2025). Transfer history and net spend data by club.",
+            ].map((ref, i) => (
+              <p key={i} style={{ fontFamily: "var(--font-body)", fontSize: "0.9rem", color: "var(--color-muted)", lineHeight: 1.6, paddingLeft: "1rem", borderLeft: "2px solid var(--color-border)" }}>
+                {ref}
+              </p>
+            ))}
+          </div>
+        </div>
+
+        <footer style={{ marginTop: "8rem", paddingTop: "4rem", borderTop: "1px solid var(--color-border)", display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "4rem" }}>
           <div>
             <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.85rem", color: "var(--color-primary)", fontWeight: 900, marginBottom: "1rem", textTransform: "uppercase", letterSpacing: "0.2em" }}>Official Research Publication &middot; 2026</p>
             <p style={{ fontFamily: "var(--font-body)", fontSize: "0.95rem", color: "#64748b", maxWidth: "500px", lineHeight: 1.6 }}>Survival Analysis of UEFA Champions League Trophy Droughts: A Parametric Investigation.</p>
           </div>
           <div style={{ textAlign: "right" }} className="text-left md:text-right">
              <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.85rem", color: "var(--color-accent)", fontWeight: 800, marginBottom: "1rem" }}>SUPERVISOR: DR. WAFAA IBRAHIM</p>
-             <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.85rem", color: "#94a3b8" }}>DATA: UCL HISTORICAL RECORDS &middot; R SURVIVAL</p>
+             <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.85rem", color: "#94a3b8" }}>CODE: <a href="https://github.com/MO-Elsamahy/BIO" target="_blank" rel="noreferrer" style={{ textDecoration: "underline" }}>project_without_jsa.R</a></p>
           </div>
         </footer>
       </div>

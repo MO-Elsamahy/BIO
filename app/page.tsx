@@ -8,6 +8,7 @@ import DataSection from "@/components/DataSection";
 import KaplanMeierSection from "@/components/KaplanMeierSection";
 import CoxSection from "@/components/CoxSection";
 import AFTSection from "@/components/AFTSection";
+import DiagnosticsSection from "@/components/DiagnosticsSection";
 import ConclusionsSection from "@/components/ConclusionsSection";
 
 export default function Home() {
@@ -16,21 +17,28 @@ export default function Home() {
       <HeroSection />
       <TitleSection />
       
-      {/* 2. Barcelona Case Study (Primary Focus) */}
-      <BarcelonaSection />
-      
-      {/* 3. Introduction (Section 1 of Report) */}
+      {/* 1. Introduction */}
       <IntroductionSection />
       
-      {/* 4. Data Description (Section 2 of Report) */}
+      {/* 2. Data Description */}
       <DataSection />
       
-      {/* 5. Analysis Frameworks (Section 3 & 4 of Report) */}
+      {/* 3. Non-Parametric (KM) */}
       <KaplanMeierSection />
+      
+      {/* 4. Semi-Parametric (Cox) */}
       <CoxSection />
+      
+      {/* 5. Diagnostics & Validation */}
+      <DiagnosticsSection />
+      
+      {/* 6. Parametric (AFT) */}
       <AFTSection />
       
-      {/* 6. Synthesis (Section 5 & 6 of Report) */}
+      {/* 7. Case Study (Application) */}
+      <BarcelonaSection />
+      
+      {/* 8. Synthesis */}
       <ConclusionsSection />
     </main>
   );
