@@ -27,8 +27,14 @@ export default function DataSection() {
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8 }} style={{ marginBottom: "6rem" }}>
           <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.85rem", color: "var(--color-primary)", letterSpacing: "0.6em", textTransform: "uppercase", fontWeight: 800, display: "block", marginBottom: "1.5rem" }}>Section 02 &mdash; Data Dictionary</span>
-          <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(3.5rem, 6vw, 4.5rem)", fontWeight: 400, color: "var(--color-primary)", marginBottom: "2rem" }}>Variable Parameters.</h2>
-          <p style={{ color: "var(--color-muted)", maxWidth: "800px", lineHeight: 1.6, fontSize: "1.1rem" }}>The dataset spans 56 observations across 23 unique clubs, with 13 variables covering institutional, financial, and sporting domains.</p>
+          <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(3.5rem, 6vw, 4.5rem)", fontWeight: 400, color: "var(--color-primary)", marginBottom: "2rem" }}>Data Parameters.</h2>
+          <div style={{ width: "100px", height: "4px", background: "var(--color-primary)", marginBottom: "3rem" }} />
+          <p style={{ color: "var(--color-muted)", maxWidth: "800px", lineHeight: 1.8, fontSize: "1.1rem", marginBottom: "2rem" }}>
+            The dataset spans 56 distinct drought spells across 23 unique clubs. A key distinction in this analysis is the use of <span style={{ color: "var(--color-primary)", fontWeight: 700 }}>UEFA League Rank</span> as a proxy for the competitive environment, rather than the club&apos;s individual coefficient.
+          </p>
+          <p style={{ color: "var(--color-muted)", maxWidth: "800px", lineHeight: 1.8, fontSize: "1.1rem" }}>
+            Censoring applies to 23 spells where the drought remains unresolved as of the 2024-25 season. All censored observations are treated as non-informative, following standard survival analysis conventions.
+          </p>
         </motion.div>
 
         <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={inView ? { opacity: 1, scale: 1 } : {}} style={{ overflowX: "auto", border: "1px solid var(--color-border)", background: "#ffffff", boxShadow: "0 40px 100px rgba(0,0,0,0.03)" }}>

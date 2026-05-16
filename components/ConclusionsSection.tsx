@@ -4,13 +4,13 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 
-const conclusions = [
-  { index: "01", finding: "Median drought duration is 12 years", stat: "95% CI: 8 to 33 years — reflects structural elite dominance." },
-  { index: "02", finding: "Managerial instability is the primary risk", stat: "Each additional manager extends drought by 24% (TR = 1.24)." },
-  { index: "03", finding: "Talent loss doubles expected duration", stat: "TR = 2.03, p = 0.015 — no amount of spending replicates a core talent." },
-  { index: "04", finding: "Domestic league quality is structural", stat: "Top-league clubs resolve droughts 58% faster (HR = 1.583)." },
-  { index: "05", finding: "Ownership has no significant effect", stat: "State-backed or billionaire funding adds little predictive power." },
-  { index: "06", finding: "Log-Normal AFT provides best fit", stat: "AIC = 188.25 — 82% discriminative accuracy in ranking clubs." },
+const findings = [
+  { index: "01", title: "Structural Elite Dominance", text: "The median drought duration of 12 years (95% CI: 8–33) underscores a structural difficulty that exceeds common sporting intuition." },
+  { index: "02", title: "Managerial Project Continuity", text: "Instability is the primary hazard; each additional manager extends the expected drought duration by 24% (TR = 1.24, p < 0.001)." },
+  { index: "03", title: "The Irreplaceable Talent Gap", text: "Losing a generational talent more than doubles the expected drought (TR = 2.03), an impact that dwarfs all financial variables combined." },
+  { index: "04", title: "League Infrastructure Advantage", text: "Domestic quality acts as a force multiplier; clubs from top-ranked leagues resolve droughts 58% faster per annum (HR = 1.583)." },
+  { index: "05", title: "The Financial Neutrality", text: "Ownership structure and net transfer spending show no statistically significant independent effect when coaching and squad continuity are controlled." },
+  { index: "06", title: "Statistical Discriminative Power", text: "The Log-Normal AFT model achieves an 82% concordance, successfully ranking the competitive longevity of 4 out of every 5 club pairings." },
 ];
 
 export default function ConclusionsSection() {
@@ -24,22 +24,24 @@ export default function ConclusionsSection() {
           <div style={{ position: "relative", width: "80px", height: "80px", margin: "0 auto 3rem" }}>
              <Image src="/ucl-logo.png" alt="UCL" fill style={{ objectFit: "contain" }} />
           </div>
-          <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(3.5rem, 8vw, 5.5rem)", fontWeight: 300, color: "var(--color-primary)", lineHeight: 0.9, letterSpacing: "-0.04em", marginBottom: "3rem" }}>Principal Conclusions.</h2>
-          <div style={{ width: "120px", height: "4px", background: "var(--color-accent)", margin: "0 auto" }} />
+          <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(3.5rem, 8vw, 5.5rem)", fontWeight: 300, color: "var(--color-primary)", lineHeight: 0.9, letterSpacing: "-0.04em", marginBottom: "3rem" }}>Synthesized Findings.</h2>
+          <p style={{ fontFamily: "var(--font-body)", fontSize: "1.2rem", color: "var(--color-muted)", maxWidth: "800px", margin: "0 auto" }}>
+            This investigation demonstrates that UCL trophy droughts are not merely products of chance, but are systematically predictable from institutional and sporting covariates.
+          </p>
         </motion.div>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "6rem", marginBottom: "12rem" }} className="grid-cols-1 lg:grid-cols-2">
-          {conclusions.map((c, i) => (
+          {findings.map((f, i) => (
             <motion.div key={i} initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: i * 0.1 }} style={{ borderBottom: "1px solid var(--color-border)", paddingBottom: "4rem" }}>
-              <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.8rem", color: "var(--color-primary)", letterSpacing: "0.4em", marginBottom: "2rem", fontWeight: 800 }}>CONCLUSION &mdash; {c.index}</div>
-              <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.8rem", lineHeight: 1.2, color: "var(--color-primary)", marginBottom: "1.5rem" }}>{c.finding}</h3>
-              <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.9rem", color: "var(--color-muted)", letterSpacing: "0.05em" }}>{c.stat}</p>
+              <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.75rem", color: "var(--color-primary)", letterSpacing: "0.4em", marginBottom: "2rem", fontWeight: 800 }}>FINDING &mdash; {f.index}</div>
+              <h3 style={{ fontFamily: "var(--font-display)", fontSize: "2rem", lineHeight: 1.2, color: "var(--color-primary)", marginBottom: "1.5rem" }}>{f.title}</h3>
+              <p style={{ fontFamily: "var(--font-body)", fontSize: "1.05rem", color: "var(--color-text)", lineHeight: 1.6, opacity: 0.8 }}>{f.text}</p>
             </motion.div>
           ))}
         </div>
 
-        <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={inView ? { opacity: 1, scale: 1 } : {}} transition={{ duration: 1.2, delay: 0.8 }} style={{ background: "#f8fafc", border: "1px solid var(--color-border)", padding: "8rem 5rem", textAlign: "center" }}>
-          <p style={{ fontFamily: "var(--font-display)", fontStyle: "italic", fontSize: "2.2rem", lineHeight: 1.3, color: "var(--color-primary)", maxWidth: "900px", margin: "0 auto" }}>
+        <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={inView ? { opacity: 1, scale: 1 } : {}} transition={{ duration: 1.2, delay: 0.8 }} style={{ background: "#f8fafc", border: "1px solid var(--color-border)", padding: "8rem 5rem", textAlign: "center", boxShadow: "0 40px 80px rgba(0,0,0,0.02)" }}>
+          <p style={{ fontFamily: "var(--font-display)", fontStyle: "italic", fontSize: "2.4rem", lineHeight: 1.3, color: "var(--color-primary)", maxWidth: "900px", margin: "0 auto" }}>
             &ldquo;In the ecosystem of elite competition, structural continuity remains the single most consequential variable for institutional longevity.&rdquo;
           </p>
         </motion.div>
