@@ -33,9 +33,8 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "UCL Trophy Drought — Survival Analysis",
-  description:
-    "A parametric survival analysis of UEFA Champions League trophy droughts across 23 clubs, 1992–2025. Kaplan-Meier, Cox proportional hazards, and AFT modelling.",
+  title: "UCL Trophy Droughts | A Survival Analysis Study",
+  description: "An interactive academic investigation into UEFA Champions League trophy droughts (1992–2025). Discover the statistical impact of managerial instability, transfer spending, and the departure of generational talents like Lionel Messi.",
   keywords: [
     "UEFA Champions League",
     "survival analysis",
@@ -44,11 +43,35 @@ export const metadata: Metadata = {
     "FC Barcelona",
     "trophy drought",
     "sports analytics",
+    "football statistics"
   ],
+  metadataBase: new URL("https://sa.samahy.tech"),
   openGraph: {
-    title: "UCL Trophy Drought — Survival Analysis",
-    description: "Parametric modelling of UCL drought spells across 23 elite clubs, 1992–2025.",
+    title: "UCL Trophy Droughts | A Survival Analysis Study",
+    description: "An interactive academic investigation into UEFA Champions League trophy droughts. Discover the statistical impact of managerial instability and generational talents.",
     type: "article",
+    url: "https://sa.samahy.tech",
+    siteName: "Academic Investigation Vol. 56",
+    images: [
+      {
+        url: "https://sa.samahy.tech/ucl-logo.png",
+        width: 800,
+        height: 800,
+        alt: "UEFA Champions League Logo",
+      },
+      {
+        url: "https://sa.samahy.tech/ucl-starball.png",
+        width: 1200,
+        height: 630,
+        alt: "UCL Starball Background",
+      }
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "UCL Trophy Droughts | Survival Analysis",
+    description: "An interactive academic investigation into UEFA Champions League trophy droughts. Discover the statistical impact of managerial instability and generational talents.",
+    images: ["https://sa.samahy.tech/ucl-starball.png"],
   },
 };
 
