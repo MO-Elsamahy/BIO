@@ -54,8 +54,23 @@ export default function ConclusionsSection() {
             <motion.div 
               key={i} 
               variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }} 
-              whileHover={{ scale: 1.02, x: 5, transition: { duration: 0.2 } }}
-              style={{ borderBottom: "1px solid var(--color-border)", paddingBottom: "4rem", cursor: "default" }}
+              whileHover={{ 
+                scale: 1.02, 
+                x: 8, 
+                backgroundColor: "rgba(0, 51, 153, 0.02)", 
+                borderBottomColor: "var(--color-accent)",
+                borderLeftColor: "var(--color-accent)",
+                boxShadow: "15px 30px 60px rgba(0, 51, 153, 0.08)",
+                transition: { duration: 0.3 } 
+              }}
+              style={{ 
+                borderBottom: "1px solid var(--color-border)", 
+                borderLeft: "4px solid transparent",
+                padding: "2rem", 
+                borderRadius: "4px",
+                cursor: "default",
+                transition: "border-color 0.3s ease, background-color 0.3s ease"
+              }}
             >
               <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.75rem", color: "var(--color-primary)", letterSpacing: "0.4em", marginBottom: "2rem", fontWeight: 800 }}>FINDING &mdash; {f.index}</div>
               <h3 style={{ fontFamily: "var(--font-display)", fontSize: "2rem", lineHeight: 1.2, color: "var(--color-primary)", marginBottom: "1.5rem" }}>{f.title}</h3>
