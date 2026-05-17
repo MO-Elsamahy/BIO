@@ -38,9 +38,14 @@ export default function ConclusionsSection() {
               Synthesized Findings.
             </motion.h2>
           </div>
-          <p style={{ fontFamily: "var(--font-body)", fontSize: "1.2rem", color: "var(--color-muted)", maxWidth: "800px", margin: "0 auto" }}>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={inView ? { opacity: 1, y: 0 } : {}} 
+            transition={{ duration: 0.8, delay: 0.3 }}
+            style={{ fontFamily: "var(--font-body)", fontSize: "1.2rem", color: "var(--color-muted)", maxWidth: "800px", margin: "0 auto" }}
+          >
             This investigation demonstrates that UCL trophy droughts are not merely products of chance, but are systematically predictable from institutional and sporting covariates.
-          </p>
+          </motion.p>
         </motion.div>
 
         <motion.div 
@@ -80,9 +85,9 @@ export default function ConclusionsSection() {
         </motion.div>
 
         <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }} 
-          animate={inView ? { opacity: 1, scale: 1 } : {}} 
-          transition={{ duration: 1.2, delay: 0.8 }} 
+          initial={{ opacity: 0, scale: 0.95, y: 30 }} 
+          whileInView={{ opacity: 1, scale: 1, y: 0 }} 
+          transition={{ duration: 1, ease: "easeOut" }} 
           whileHover={{ boxShadow: "0 60px 120px rgba(0,51,153,0.08)", y: -5 }}
           style={{ background: "#f8fafc", border: "1px solid var(--color-border)", padding: "8rem 5rem", textAlign: "center", boxShadow: "0 40px 80px rgba(0,0,0,0.02)", transition: "all 0.4s ease" }}
         >

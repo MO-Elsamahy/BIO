@@ -43,6 +43,9 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 export default function AFTSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
+  
+  const chartRef = useRef<HTMLDivElement>(null);
+  const isChartInView = useInView(chartRef, { once: true, margin: "-100px" });
 
   const chartData = aftData.map((d) => ({ ...d, trShifted: d.tr - 1 }));
 
@@ -68,31 +71,34 @@ export default function AFTSection() {
         </motion.div>
 
         <motion.div
+          ref={chartRef}
           initial={{ opacity: 0, y: 60 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1.2, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
-          style={{ background: "#f8fafc", padding: "5rem", border: "1px solid var(--color-border)", marginBottom: "8rem" }}
+          style={{ background: "#f8fafc", padding: "5rem", border: "1px solid var(--color-border)", marginBottom: "8rem", minHeight: "580px" }}
         >
-          <ResponsiveContainer width="100%" height={480}>
-            <ComposedChart layout="vertical" data={chartData} margin={{ top: 10, right: 60, left: 250, bottom: 40 }}>
-              <CartesianGrid horizontal={false} vertical stroke="#f0f0f0" />
-              <XAxis
-                type="number"
-                domain={[-0.6, 1.1]}
-                tickFormatter={(v) => (v + 1).toFixed(1)}
-                tick={{ fontFamily: "var(--font-mono)", fontSize: 12, fill: "#64748b" }}
-                label={{ value: "Time Ratio (TR)", position: "insideBottom", offset: -25, style: { fontFamily: "var(--font-mono)", fontSize: 12, fill: "#64748b" } }}
-              />
-              <YAxis type="category" dataKey="name" tick={{ fontFamily: "var(--font-display)", fontSize: 15, fill: "#0f172a" }} width={240} />
-              <ReferenceLine x={0} stroke="#cbd5e1" strokeWidth={2} label={{ value: "TR = 1.0", position: "top", style: { fill: "#94a3b8", fontFamily: "var(--font-mono)", fontSize: 10 } }} />
-              <Bar dataKey="trShifted" barSize={14} animationDuration={2200} animationEasing="ease-out" isAnimationActive={true}>
-                {chartData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={entry.tr > 1 ? "#a50044" : "#003399"} fillOpacity={entry.sig ? 1 : 0.22} />
-                ))}
-              </Bar>
-              <Tooltip content={<CustomTooltip />} />
-            </ComposedChart>
-          </ResponsiveContainer>
+          {isChartInView && (
+            <ResponsiveContainer width="100%" height={480}>
+              <ComposedChart layout="vertical" data={chartData} margin={{ top: 10, right: 60, left: 250, bottom: 40 }}>
+                <CartesianGrid horizontal={false} vertical stroke="#f0f0f0" />
+                <XAxis
+                  type="number"
+                  domain={[-0.6, 1.1]}
+                  tickFormatter={(v) => (v + 1).toFixed(1)}
+                  tick={{ fontFamily: "var(--font-mono)", fontSize: 12, fill: "#64748b" }}
+                  label={{ value: "Time Ratio (TR)", position: "insideBottom", offset: -25, style: { fontFamily: "var(--font-mono)", fontSize: 12, fill: "#64748b" } }}
+                />
+                <YAxis type="category" dataKey="name" tick={{ fontFamily: "var(--font-display)", fontSize: 15, fill: "#0f172a" }} width={240} />
+                <ReferenceLine x={0} stroke="#cbd5e1" strokeWidth={2} label={{ value: "TR = 1.0", position: "top", style: { fill: "#94a3b8", fontFamily: "var(--font-mono)", fontSize: 10 } }} />
+                <Bar dataKey="trShifted" barSize={14} animationDuration={2200} animationEasing="ease-out" isAnimationActive={true}>
+                  {chartData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.tr > 1 ? "#a50044" : "#003399"} fillOpacity={entry.sig ? 1 : 0.22} />
+                  ))}
+                </Bar>
+                <Tooltip content={<CustomTooltip />} />
+              </ComposedChart>
+            </ResponsiveContainer>
+          )}
         </motion.div>
 
         <motion.div

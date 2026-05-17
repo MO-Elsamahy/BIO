@@ -50,6 +50,9 @@ export default function BarcelonaSection() {
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: false, margin: "-20%" });
 
+  const chartRef = useRef<HTMLDivElement>(null);
+  const isChartInView = useInView(chartRef, { once: true, margin: "-100px" });
+
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>;
     const handleScroll = () => {
@@ -120,7 +123,7 @@ export default function BarcelonaSection() {
             <p style={{ color: "#666", fontSize: "1.1rem", maxWidth: "600px", margin: "0 auto" }}>A Log-Normal AFT application to the post-2015 institutional drought.</p>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6rem", marginBottom: "10rem" }} className="grid-cols-1 md:grid-cols-2">
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6rem", marginBottom: "6rem" }} className="grid-cols-1 md:grid-cols-2">
             <div>
               <h3 style={{ fontFamily: "var(--font-mono)", fontSize: "0.8rem", color: "#a50044", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: "1.5rem", fontWeight: 800 }}>Profile Parameters</h3>
               <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "1.5rem" }}>
@@ -138,28 +141,75 @@ export default function BarcelonaSection() {
               </ul>
             </div>
 
-            <div style={{ borderLeft: "8px solid #004d98", paddingLeft: "3rem" }}>
-              <h3 style={{ fontFamily: "var(--font-mono)", fontSize: "0.8rem", color: "#004d98", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: "1.5rem", fontWeight: 800 }}>Simulation Results</h3>
-              <p style={{ fontFamily: "var(--font-body)", fontSize: "1.1rem", color: "#333", lineHeight: 1.8 }}>The financial simulation of signing <span style={{ color: "#a50044", fontWeight: 700 }}>Julian Alvarez</span> for EUR 100M reduces the median predicted drought by only 0.5 years (9.6 to 9.1).</p>
-              <div style={{ marginTop: "3rem", background: "#f8fafc", padding: "2rem", border: "1px solid #e2e8f0" }}>
-                 <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.75rem", color: "#004d98", fontWeight: 800 }}>FINDING: Spending alone cannot resolve the structural loss of Messi.</p>
-              </div>
+            <div style={{ borderLeft: "8px solid #004d98", paddingLeft: "3rem", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+              <h3 style={{ fontFamily: "var(--font-mono)", fontSize: "0.8rem", color: "#004d98", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: "1.5rem", fontWeight: 800 }}>Current Trajectory</h3>
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: "easeOut" }}
+                style={{ fontFamily: "var(--font-body)", fontSize: "1.1rem", color: "#333", lineHeight: 1.8 }}
+              >
+                Because Barcelona is coded as having experienced a Generational Talent Departure (HR=0.210), the predicted survival curve never falls below the 50% survival threshold during the observable time horizon.
+              </motion.p>
             </div>
           </div>
 
-          <div style={{ height: "500px", padding: "2rem", border: "1px solid #eee" }}>
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={barcaSimulationData} margin={{ top: 20, right: 40, left: 20, bottom: 40 }}>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                <XAxis dataKey="t" label={{ value: "Drought Years", position: "bottom", offset: 0, fontFamily: "var(--font-mono)", fontSize: 12 }} />
-                <YAxis tickFormatter={(v) => `${(v * 100).toFixed(0)}%`} label={{ value: "Survival Prob.", angle: -90, position: "left", fontFamily: "var(--font-mono)", fontSize: 12 }} />
-                <Tooltip content={<CustomTooltip />} />
-                <Legend verticalAlign="top" height={80} wrapperStyle={{ fontFamily: "var(--font-mono)", fontSize: "0.8rem", textTransform: "uppercase" }} />
-                <Line name="Current Profile" type="monotone" dataKey="current" stroke="#a50044" strokeWidth={5} dot={false} animationDuration={5000} />
-                <Line name="+ Alvarez Scenario" type="monotone" dataKey="alvarez" stroke="#004d98" strokeWidth={3} strokeDasharray="8 8" dot={false} animationDuration={5000} />
-                <ReferenceLine x={11} stroke="#edbb00" strokeWidth={3} label={{ value: "PRESENT", position: "top", fill: "#a50044", fontWeight: 900, fontFamily: "var(--font-mono)" }} />
-              </LineChart>
-            </ResponsiveContainer>
+          <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", padding: "4rem", display: "flex", gap: "4rem", alignItems: "center", flexWrap: "wrap", borderRadius: "12px", marginBottom: "6rem" }}>
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              style={{ 
+                width: "280px", 
+                height: "360px", 
+                position: "relative", 
+                flexShrink: 0, 
+                borderRadius: "12px",
+                overflow: "hidden",
+                border: "4px solid #a50044", 
+                boxShadow: "0 30px 60px rgba(0, 77, 152, 0.2)",
+                background: "linear-gradient(135deg, #004d98 0%, #002244 100%)",
+              }}
+            >
+              {/* Gold Accent */}
+              <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "6px", background: "#edbb00", zIndex: 10 }} />
+              
+              <Image src="/Julian Alvarez.png" alt="Julian Alvarez" fill style={{ objectFit: "cover", objectPosition: "top" }} />
+              
+              {/* Gradient Overlay for Text Visibility */}
+              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,77,152,0.95) 0%, transparent 50%)", zIndex: 5 }} />
+              
+              {/* Player Info */}
+              <div style={{ position: "absolute", bottom: "1.5rem", left: "1.5rem", zIndex: 10 }}>
+                <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.65rem", color: "#edbb00", letterSpacing: "0.2em", marginBottom: "0.2rem", fontWeight: 800 }}>TRANSFER TARGET</div>
+                <div style={{ fontFamily: "var(--font-display)", fontSize: "1.8rem", color: "#ffffff", lineHeight: 1 }}>J. Álvarez</div>
+              </div>
+            </motion.div>
+            <div style={{ flex: 1, minWidth: "300px" }}>
+              <h3 style={{ fontFamily: "var(--font-mono)", fontSize: "0.85rem", color: "#a50044", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: "1.5rem", fontWeight: 800 }}>Financial Simulation Scenario</h3>
+              <motion.h4 initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} style={{ fontFamily: "var(--font-display)", fontSize: "2.8rem", color: "#004d98", marginBottom: "1.5rem", lineHeight: 1.1 }}>The Alvarez Signing.</motion.h4>
+              <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} style={{ fontFamily: "var(--font-body)", fontSize: "1.1rem", color: "#475569", lineHeight: 1.8, marginBottom: "2.5rem", maxWidth: "600px" }}>
+                The financial simulation of signing Julian Alvarez for an additional net expenditure of EUR 100M produces only a marginal improvement. The model estimates that the median predicted drought decreases by only 0.5 years (from 9.6 to 9.1).
+              </motion.p>
+              <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.4 }} style={{ borderLeft: "4px solid #edbb00", paddingLeft: "1.5rem" }}>
+                 <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.9rem", color: "#004d98", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.05em" }}>Finding: Spending alone cannot resolve the structural loss of Lionel Messi.</p>
+              </motion.div>
+            </div>
+          </div>
+
+          <div ref={chartRef} style={{ height: "500px", padding: "2rem", border: "1px solid #eee" }}>
+            {isChartInView && (
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={barcaSimulationData} margin={{ top: 20, right: 40, left: 20, bottom: 40 }}>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                  <XAxis dataKey="t" label={{ value: "Drought Years", position: "bottom", offset: 0, fontFamily: "var(--font-mono)", fontSize: 12 }} />
+                  <YAxis tickFormatter={(v) => `${(v * 100).toFixed(0)}%`} label={{ value: "Survival Prob.", angle: -90, position: "left", fontFamily: "var(--font-mono)", fontSize: 12 }} />
+                  <Tooltip content={<CustomTooltip />} />
+                  <Legend verticalAlign="top" height={80} wrapperStyle={{ fontFamily: "var(--font-mono)", fontSize: "0.8rem", textTransform: "uppercase" }} />
+                  <Line name="Current Profile" type="monotone" dataKey="current" stroke="#a50044" strokeWidth={5} dot={false} animationDuration={5000} />
+                  <Line name="+ Alvarez Scenario" type="monotone" dataKey="alvarez" stroke="#004d98" strokeWidth={3} strokeDasharray="8 8" dot={false} animationDuration={5000} />
+                  <ReferenceLine x={11} stroke="#edbb00" strokeWidth={3} label={{ value: "PRESENT", position: "top", fill: "#a50044", fontWeight: 900, fontFamily: "var(--font-mono)" }} />
+                </LineChart>
+              </ResponsiveContainer>
+            )}
           </div>
         </motion.div>
       </div>

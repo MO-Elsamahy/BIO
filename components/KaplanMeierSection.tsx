@@ -53,7 +53,7 @@ export default function KaplanMeierSection() {
 
   // Retrigger chart animation when section enters view
   const chartRef = useRef<HTMLDivElement>(null);
-  useInView(chartRef, {
+  const isChartInView = useInView(chartRef, {
     once: true,
     margin: "-100px",
   });
@@ -125,27 +125,29 @@ export default function KaplanMeierSection() {
             initial={{ opacity: 0, scale: 0.97, y: 30 }}
             animate={inView ? { opacity: 1, scale: 1, y: 0 } : {}}
             transition={{ duration: 1.2, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
-            style={{ background: "#ffffff", padding: "4rem", border: "1px solid var(--color-border)", boxShadow: "0 40px 80px rgba(0,0,0,0.05)" }}
+            style={{ background: "#ffffff", padding: "4rem", border: "1px solid var(--color-border)", boxShadow: "0 40px 80px rgba(0,0,0,0.05)", minHeight: "560px" }}
           >
-            <ResponsiveContainer width="100%" height={480}>
-              <ComposedChart data={kmData} margin={{ top: 20, right: 30, left: 10, bottom: 40 }}>
-                <CartesianGrid stroke="#eee" vertical={false} />
-                <XAxis dataKey="t" tick={{ fontFamily: "var(--font-mono)", fontSize: 12, fill: "#64748b" }} label={{ value: "Years into Drought", position: "insideBottom", offset: -25, style: { fontFamily: "var(--font-mono)", fontSize: 12, fill: "#64748b" } }} />
-                <YAxis domain={[0, 1]} tick={{ fontFamily: "var(--font-mono)", fontSize: 12, fill: "#64748b" }} tickFormatter={(v) => `${(v * 100).toFixed(0)}%`} />
-                <Area dataKey="hi" fill="rgba(0,51,153,0.06)" stroke="none" type="stepAfter" isAnimationActive={false} />
-                <Area dataKey="lo" fill="#fff" stroke="none" type="stepAfter" isAnimationActive={false} />
-                <AnimatedLine
-                  dataKey="s"
-                  stroke="#003399"
-                  strokeWidth={4}
-                  dot={false}
-                  type="stepAfter"
-                  animationDuration={3500}
-                />
-                <ReferenceLine y={0.5} stroke="#c8a951" strokeDasharray="8 8" strokeWidth={2} label={{ value: "MEDIAN = 12y", position: "right", style: { fill: "#c8a951", fontFamily: "var(--font-mono)", fontSize: 11, fontWeight: 900 } }} />
-                <Tooltip content={<CustomTooltip />} />
-              </ComposedChart>
-            </ResponsiveContainer>
+            {isChartInView && (
+              <ResponsiveContainer width="100%" height={480}>
+                <ComposedChart data={kmData} margin={{ top: 20, right: 30, left: 10, bottom: 40 }}>
+                  <CartesianGrid stroke="#eee" vertical={false} />
+                  <XAxis dataKey="t" tick={{ fontFamily: "var(--font-mono)", fontSize: 12, fill: "#64748b" }} label={{ value: "Years into Drought", position: "insideBottom", offset: -25, style: { fontFamily: "var(--font-mono)", fontSize: 12, fill: "#64748b" } }} />
+                  <YAxis domain={[0, 1]} tick={{ fontFamily: "var(--font-mono)", fontSize: 12, fill: "#64748b" }} tickFormatter={(v) => `${(v * 100).toFixed(0)}%`} />
+                  <Area dataKey="hi" fill="rgba(0,51,153,0.06)" stroke="none" type="stepAfter" isAnimationActive={false} />
+                  <Area dataKey="lo" fill="#fff" stroke="none" type="stepAfter" isAnimationActive={false} />
+                  <AnimatedLine
+                    dataKey="s"
+                    stroke="#003399"
+                    strokeWidth={4}
+                    dot={false}
+                    type="stepAfter"
+                    animationDuration={3500}
+                  />
+                  <ReferenceLine y={0.5} stroke="#c8a951" strokeDasharray="8 8" strokeWidth={2} label={{ value: "MEDIAN = 12y", position: "right", style: { fill: "#c8a951", fontFamily: "var(--font-mono)", fontSize: 11, fontWeight: 900 } }} />
+                  <Tooltip content={<CustomTooltip />} />
+                </ComposedChart>
+              </ResponsiveContainer>
+            )}
           </motion.div>
         </div>
       </div>

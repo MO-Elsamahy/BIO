@@ -21,38 +21,21 @@ export default function BackgroundElements() {
   if (!mounted) return null;
 
   return (
-    <div style={{ position: "fixed", inset: 0, zIndex: -1, pointerEvents: "none", overflow: "hidden" }}>
-
-      {/* LEFT — large glowing starball */}
+    <div style={{ position: "fixed", inset: 0, zIndex: 50, pointerEvents: "none", overflow: "hidden" }}>
+      {/* SINGLE — Huge glowing starball watermark */}
       <motion.div
         style={{
           position: "absolute",
-          top: "8%",
-          left: "-8vw",
-          width: "48vw",
-          height: "48vw",
+          top: "-5vw",
+          left: "50vw",
+          width: "100vw",
+          height: "100vw",
+          marginLeft: "-50vw", // Centers it horizontally
           rotate: rotate1,
           y: y1,
           scale: scale1,
-          opacity: 0.13,
-          filter: "drop-shadow(0 0 60px rgba(0,51,153,0.25))",
-        }}
-      >
-        <Image src="/ucl-starball.png" alt="" fill style={{ objectFit: "contain" }} priority />
-      </motion.div>
-
-      {/* RIGHT — slightly smaller, counter-rotating */}
-      <motion.div
-        style={{
-          position: "absolute",
-          bottom: "5%",
-          right: "-12vw",
-          width: "56vw",
-          height: "56vw",
-          rotate: rotate2,
-          y: y2,
-          opacity: 0.09,
-          filter: "drop-shadow(0 0 80px rgba(200,169,81,0.15))",
+          opacity: 0.04, // Very high transparency so text is legible
+          filter: "drop-shadow(0 0 60px rgba(0,51,153,0.3))",
         }}
       >
         <Image src="/ucl-starball.png" alt="" fill style={{ objectFit: "contain" }} priority />
